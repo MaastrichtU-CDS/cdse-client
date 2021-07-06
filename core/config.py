@@ -6,7 +6,7 @@ from starlette.datastructures import CommaSeparatedStrings, Secret
 config = Config(".env")
 
 API_PREFIX = ""
-PORT = 1312
+PORT: int = config("PORT", cast=int)
 DEBUG: bool = config("DEBUG", cast=bool, default=False)
 SECRET_KEY: Secret = config("SECRET_KEY", cast=Secret)
 PROJECT_NAME: str = config("PROJECT_NAME", default="CDSE - CLient")
