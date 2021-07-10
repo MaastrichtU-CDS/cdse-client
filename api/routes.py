@@ -1,3 +1,4 @@
+import threading
 from typing import Dict
 from fastapi import APIRouter, Request, Depends
 from fastapi.openapi.models import APIKey
@@ -14,7 +15,12 @@ templates = Jinja2Templates(directory="template")
 
 @router.post("/")
 async def post_model_input(model_input: Dict[str, str],  api_key: APIKey = Depends(check_api_token)):
-    await PredictionModelStore().get_model_instance().run_calculation(model_input)
+    def start_calculation():
+        PredictionModelStore().get_model_instance().run_calculation(model_input)
+
+    t2 = threading.Thread(target=start_calculation, args=[])
+    t2.start()
+
 
 
 @router.get("/", response_class=HTMLResponse)

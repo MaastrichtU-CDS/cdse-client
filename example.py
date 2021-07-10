@@ -11,7 +11,7 @@ class MyExampleModel(PredictionModelBase):
     def static_template_result(self):
         pass
 
-    async def run_calculation(self, model_input: Dict[str, str]):
+    def run_calculation(self, model_input: Dict[str, str]):
         self.post_result(model_input)
         pass
 
