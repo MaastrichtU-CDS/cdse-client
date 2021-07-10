@@ -15,6 +15,10 @@ class PredictionModelBase(ABC):
     def static_template_result(self):
         pass
 
+    @abstractmethod
+    def initial_start_event(self):
+        pass
+
     @staticmethod
     def post_result(calculation_results: Dict[str, str]):
         """method to return all calculation results"""

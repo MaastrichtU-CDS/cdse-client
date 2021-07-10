@@ -8,11 +8,16 @@ router = APIRouter()
 
 
 class MyExampleModel(PredictionModelBase):
-    def static_template_result(self):
+    def initial_start_event(self):
+        print("run before server started, so you can do pre calculations")
         pass
 
     def run_calculation(self, model_input: Dict[str, str]):
         self.post_result(model_input)
+        pass
+
+    def static_template_result(self):
+        print("run when server request static template files")
         pass
 
 
