@@ -21,7 +21,7 @@ class Client:
         except ConnectionError as connection_error:
             print(connection_error)
 
-    def post_results(self, results):
+    def post_result(self, results):
         try:
             session = requests.session()
             retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
