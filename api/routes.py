@@ -14,7 +14,9 @@ templates = Jinja2Templates(directory="template")
 
 
 @router.post("/")
-async def post_model_input(model_input: Dict[str, str],  api_key: APIKey = Depends(check_api_token)):
+async def post_model_input(
+    model_input: Dict[str, str], api_key: APIKey = Depends(check_api_token)
+):
     def start_calculation():
         PredictionModelStore().get_model_instance().run_calculation(model_input)
 
@@ -22,9 +24,10 @@ async def post_model_input(model_input: Dict[str, str],  api_key: APIKey = Depen
     t2.start()
 
 
-
 @router.get("/", response_class=HTMLResponse)
-async def static_result_page(request: Request, api_key: APIKey = Depends(check_api_token)):
+async def static_result_page(
+    request: Request, api_key: APIKey = Depends(check_api_token)
+):
     return templates.TemplateResponse(
         "index.html",
         {
