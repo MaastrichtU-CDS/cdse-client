@@ -1,33 +1,25 @@
-from collections import Callable
-from typing import Any
-
-from core.model_base import PredictionModelBase
+from abc import ABC
 
 
-class PredictionModelFactory:
-    """The factory class for creating Prediction Models"""
+def singleton(real_cls):
+    class SingletonFactory(ABC):
+        instance = None
 
-    registry: Any
-    """ Internal registry for available models """
+        def __new__(cls, *args, **kwargs):
+            if not cls.instance:
+                cls.instance = real_cls(*args, **kwargs)
+            return cls.instance
 
-    @classmethod
-    def register(cls) -> Callable:
-        """Class method to register prediction model class and creates a instance to the internal registry.
-        Returns:
-            The Executor class itself.
-        """
+    SingletonFactory.register(real_cls)
+    return SingletonFactory
 
-        def inner_wrapper(wrapped_class: PredictionModelBase) -> Callable:
-            cls.registry = wrapped_class()
-            return wrapped_class
 
-        return inner_wrapper
+@singleton
+class PredictionModelStore:
+    used_model = None
 
-    @classmethod
-    def get_executor(cls) -> "PredictionModelBase":
-        """get command to get the Prediction Model Instance.
-        This method gets the appropriate Prediction model class from the registry.
-        Returns:
-            Instance of the prediction model is passed.
-        """
-        return cls.registry
+    def __init__(self, prediction_model):
+        self.used_model = prediction_model
+
+    def get_model_instance(self):
+        return self.used_model

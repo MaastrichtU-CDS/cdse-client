@@ -1,20 +1,25 @@
-from typing import Dict
-
 import main
+from typing import Dict
+from fastapi import APIRouter
+
 from core.model_base import PredictionModelBase
-from core.model_factory import PredictionModelFactory
+
+router = APIRouter()
 
 
-@PredictionModelFactory.register()
 class MyExampleModel(PredictionModelBase):
-    def run_calculation(self, model_input: Dict[str, str]):
-        self.return_result(model_input)
+    def static_template_result(self):
         pass
 
-    def return_result(self, calculation_results: Dict[str, str]):
-        super().return_result(calculation_results)
+    def run_calculation(self, model_input: Dict[str, str]):
+        self.post_result(model_input)
         pass
+
+
+@router.get("/_query")
+def example_extra_route():
+    print("example route")
 
 
 if __name__ == "__main__":
-    main.run()
+    main.run(MyExampleModel, router)

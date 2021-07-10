@@ -1,23 +1,23 @@
-from abc import ABCMeta, abstractmethod
+import os
+from abc import abstractmethod, ABC
 from typing import Dict
 
 from services.client import Client
 
 
-class PredictionModelBase(metaclass=ABCMeta):
-    """Base class for an executor"""
-
-    def __init__(self, **kwargs):
-        """Constructor"""
-        pass
-
+class PredictionModelBase(ABC):
     @abstractmethod
     def run_calculation(self, model_input: Dict[str, str]):
         """Abstract method to get model input and kick off calculations"""
         pass
 
     @abstractmethod
-    def return_result(self, calculation_results: Dict[str, str]):
-        """Abstract method to return all calculation results"""
+    def static_template_result(self):
+        pass
+
+    @staticmethod
+    def post_result(calculation_results: Dict[str, str]):
+        """method to return all calculation results"""
+        calculation_results.update({"has_static_asset": os.path.isdir("../template")})
         Client().post_results(calculation_results)
         pass

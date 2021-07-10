@@ -1,17 +1,26 @@
+import os
+
 import uvicorn
 from fastapi import FastAPI
 from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from api.http_errors import http_error_handler
 
 from api.routes import router as api_router
 from core.config import ALLOWED_HOSTS, DEBUG, PROJECT_NAME, PORT
 from core.events import create_start_app_handler
+from core.model_factory import PredictionModelStore
 
 
-def get_application() -> FastAPI:
+def get_application(prediction_model, optional_extra_routes) -> FastAPI:
+    PredictionModelStore(prediction_model())
+
     application = FastAPI(title=PROJECT_NAME, debug=DEBUG)
+
+    if os.path.isdir("static"):
+        application.mount("/static", StaticFiles(directory="static"), name="static")
 
     application.add_middleware(
         CORSMiddleware,
@@ -27,9 +36,12 @@ def get_application() -> FastAPI:
 
     application.include_router(api_router)
 
+    if optional_extra_routes is not None:
+        application.include_router(optional_extra_routes)
+
     return application
 
 
-def run():
-    app = get_application()
+def run(prediction_model, optional_extra_routes=None):
+    app = get_application(prediction_model, optional_extra_routes)
     uvicorn.run(app, host="0.0.0.0", port=PORT)

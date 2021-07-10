@@ -1,16 +1,29 @@
 from typing import Dict
-from fastapi import APIRouter
-from core.model_factory import PredictionModelFactory
+from fastapi import APIRouter, Request
+from starlette.templating import Jinja2Templates
+from uvicorn.middleware.debug import HTMLResponse
+
+from core.model_factory import PredictionModelStore
 
 router = APIRouter()
+
+templates = Jinja2Templates(directory="template")
 
 
 @router.post("/")
 async def post_model_input(model_input: Dict[str, str]):
-    PredictionModelFactory.get_executor().run_calculation(model_input)
+    PredictionModelStore().get_model_instance().run_calculation(model_input)
     return
 
 
-@router.get("/")
-async def get_model_result_assets():
-    return "3"
+@router.get("/", response_class=HTMLResponse)
+async def static_result_page(request: Request):
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "custom": PredictionModelStore()
+            .get_model_instance()
+            .static_template_result(),
+        },
+    )
