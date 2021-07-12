@@ -12,6 +12,9 @@ requests = "*"
 black = "==21.6b0"
 aiofiles = "*"
 jinja2 = "*"
+pytest-asyncio = "*"
+httpx = "*"
+responses = "*"
 
 [requires]
 python_version = "3.8"
