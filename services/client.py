@@ -12,7 +12,7 @@ class Client:
     READY_URL = "/ready"
     RESULT_URL = "/result"
 
-    def post_ready(self):
+    def get_ready(self):
         try:
             session = requests.session()
             retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
