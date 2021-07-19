@@ -1,10 +1,6 @@
-# import client
-from core.main import run
-from core.model_base import PredictionModelBase
+from lib import run, PredictionModelBase
 from typing import Dict, Union
 from fastapi import APIRouter
-
-# from ..core.model_base import PredictionModelBase
 
 router = APIRouter()
 
@@ -21,7 +17,7 @@ class MyExampleModel(PredictionModelBase):
         pass
 
     def static_template_result(self):
-        print("run when server request static template files")
+        print(self)
         pass
 
 

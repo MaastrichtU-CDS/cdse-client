@@ -4,7 +4,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from core.config import INVOCATION_HOST, SECRET_TOKEN
+from lib.core.config import INVOCATION_HOST, SECRET_TOKEN
 
 
 class Client:
@@ -19,8 +19,10 @@ class Client:
             retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
             session.mount(self.PREFIX, HTTPAdapter(max_retries=retry))
             data = session.get(INVOCATION_HOST + self.READY_URL)
+            session.close()
             if len(data.text) > 0:
                 return data.json()
+            return None
         except ConnectionError as connection_error:
             print(connection_error)
 
@@ -31,5 +33,6 @@ class Client:
             retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
             session.mount(self.PREFIX, HTTPAdapter(max_retries=retry))
             session.post(INVOCATION_HOST + self.RESULT_URL, data=json.dumps(results))
+            session.close()
         except ConnectionError as connection_error:
             print(connection_error)

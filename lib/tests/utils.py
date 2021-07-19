@@ -1,6 +1,6 @@
 from typing import Dict
 
-from core.model_base import PredictionModelBase
+from lib.core import PredictionModelBase
 
 HEADERS = {"Authorization": "secret"}
 PAYLOAD = {
@@ -14,7 +14,7 @@ class TestModel(PredictionModelBase):
         raise NotImplementedError
 
     def static_template_result(self):
-        raise NotImplementedError
+        pass
 
     def initial_start_event(self):
         raise NotImplementedError

@@ -1,8 +1,8 @@
 import json
 
 import responses
-from services.client import Client
-from tests.utils import PAYLOAD
+from lib.services.client import Client
+from .utils import PAYLOAD
 
 
 @responses.activate
@@ -11,7 +11,7 @@ def test_client_ready_no_input():
         responses.GET,
         "http://localhost:8000/api/v1/ready",
         status=200,
-        content_type="application/json"
+        content_type="application/json",
     )
 
     res = Client().get_ready()
@@ -27,7 +27,7 @@ def test_client_ready_with_input():
         "http://localhost:8000/api/v1/ready",
         status=200,
         body=json.dumps(PAYLOAD),
-        content_type="application/json"
+        content_type="application/json",
     )
 
     res = Client().get_ready()

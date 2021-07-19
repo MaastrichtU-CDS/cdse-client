@@ -4,12 +4,11 @@ from fastapi.openapi.models import APIKey
 from starlette.templating import Jinja2Templates
 from uvicorn.middleware.debug import HTMLResponse
 
-from core.config import TEMPLATE_DIR
-from core.model_factory import PredictionModelStore
-from core.security import check_api_token
+from lib.core.config import TEMPLATE_DIR
+from lib.core.model_factory import PredictionModelStore
+from lib.core.security import check_api_token
 
 router = APIRouter()
-
 
 if os.path.isdir(TEMPLATE_DIR):
     templates = Jinja2Templates(directory=TEMPLATE_DIR)
@@ -24,6 +23,6 @@ if os.path.isdir(TEMPLATE_DIR):
                 "request": request,
                 "custom": PredictionModelStore()
                 .get_model_instance()
-                .static_template_result(),
+                .static_template_result(PredictionModelStore().get_model_instance()),
             },
         )

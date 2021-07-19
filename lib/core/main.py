@@ -8,9 +8,9 @@ from fastapi.staticfiles import StaticFiles
 
 from .http_errors import http_error_handler
 
-from api.routes import router as api_router
+from lib.api.routes import router as api_router
+from lib.services.events import create_start_app_handler
 from .config import ALLOWED_HOSTS, DEBUG, PROJECT_NAME, PORT, STATIC_DIR
-from services.events import create_start_app_handler
 from .model_factory import PredictionModelStore
 
 

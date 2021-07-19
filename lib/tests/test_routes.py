@@ -7,12 +7,12 @@ from starlette.status import (
     HTTP_200_OK,
 )
 
-from core.main import get_application
-from tests.utils import TestModel, HEADERS
+from lib.core.main import get_application
+from .utils import TestModel, HEADERS
 
 
 @pytest.mark.asyncio
-@mock.patch("tests.utils.TestModel")
+@mock.patch("lib.tests.utils.TestModel")
 async def test_get_result(model_mock: TestModel):
     async with AsyncClient(
         app=get_application(model_mock, None), base_url="http://test"
@@ -25,7 +25,7 @@ async def test_get_result(model_mock: TestModel):
 
 
 @pytest.mark.asyncio
-@mock.patch("tests.utils.TestModel")
+@mock.patch("lib.tests.utils.TestModel")
 async def test_get_wrong_api_key(model_mock: TestModel):
     async with AsyncClient(
         app=get_application(model_mock, None), base_url="http://test"
