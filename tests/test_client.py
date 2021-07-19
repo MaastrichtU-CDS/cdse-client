@@ -1,7 +1,7 @@
 import json
 
 import responses
-from services.client import Client
+from ..services.client import Client
 
 
 @responses.activate
