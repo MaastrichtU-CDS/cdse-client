@@ -7,7 +7,7 @@ from starlette.status import (
     HTTP_200_OK,
 )
 
-from lib.core.main import get_application
+from ..core.main import get_application
 from .utils import TestModel, HEADERS
 
 

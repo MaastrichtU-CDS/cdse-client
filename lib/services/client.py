@@ -4,7 +4,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from lib.core.config import INVOCATION_HOST, SECRET_TOKEN
+from ..core.config import INVOCATION_HOST, SECRET_TOKEN
 
 
 class Client:

@@ -1,6 +1,6 @@
 from typing import Dict
 
-from lib.core import PredictionModelBase
+from ..core import PredictionModelBase
 
 HEADERS = {"Authorization": "secret"}
 PAYLOAD = {

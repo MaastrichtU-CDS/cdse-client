@@ -1,6 +1,6 @@
 from unittest import mock
-from lib.tests import TestModel
-from lib.core import PredictionModelStore
+from ..tests import TestModel
+from ..core import PredictionModelStore
 
 
 @mock.patch("lib.services.Client.post_result")

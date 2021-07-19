@@ -1,7 +1,7 @@
 import json
 
 import responses
-from lib.services.client import Client
+from ..services.client import Client
 from .utils import PAYLOAD
 
 
