@@ -1,11 +1,11 @@
 from typing import Dict
 
-from ..core.model_base import PredictionModelBase
+from core.model_base import PredictionModelBase
 
 HEADERS = {"Authorization": "secret"}
 PAYLOAD = {
-    "clinical_T": "cT1",
-    "clinical_N": "cN0",
+    "Clinical_T": "cT1",
+    "Clinical_N": "cN0",
 }
 
 
