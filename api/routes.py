@@ -8,7 +8,7 @@ from uvicorn.middleware.debug import HTMLResponse
 
 from core.config import TEMPLATE_DIR
 from core.model_factory import PredictionModelStore
-from services.security import check_api_token
+from core.security import check_api_token
 
 router = APIRouter()
 
