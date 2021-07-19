@@ -2,8 +2,8 @@ import os
 from abc import abstractmethod, ABC
 from typing import Dict
 
-from core.config import TEMPLATE_DIR
-from services.client import Client
+from ..core.config import TEMPLATE_DIR
+from ..services.client import Client
 
 
 class PredictionModelBase(ABC):

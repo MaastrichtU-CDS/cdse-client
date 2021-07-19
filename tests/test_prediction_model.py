@@ -1,6 +1,6 @@
 from unittest import mock
 
-from tests.utils import TestModel
+from ..tests.utils import TestModel
 
 
 @mock.patch("services.client.Client.post_result")

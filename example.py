@@ -1,4 +1,4 @@
-# from main import run
+# import client
 # from typing import Dict, Union
 # from fastapi import APIRouter
 #
@@ -7,7 +7,7 @@
 # router = APIRouter()
 #
 #
-# class MyExampleModel(PredictionModelBase):
+# class MyExampleModel(client.PredictionModelBase):
 #     result = []
 #     def initial_start_event(self):
 #         print("run before server started, so you can do pre calculations")
@@ -28,4 +28,4 @@
 #
 #
 # if __name__ == "__main__":
-#     run(MyExampleModel, router)
+#     client.run(MyExampleModel, router)

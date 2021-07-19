@@ -9,8 +9,8 @@ from starlette.status import (
     HTTP_422_UNPROCESSABLE_ENTITY,
 )
 
-from main import get_application
-from tests.utils import TestModel, HEADERS, PAYLOAD
+from ..main import get_application
+from ..tests.utils import TestModel, HEADERS, PAYLOAD
 
 
 @pytest.mark.asyncio

@@ -4,7 +4,7 @@ from fastapi import HTTPException, Security
 from fastapi.security import APIKeyHeader
 from starlette.status import HTTP_403_FORBIDDEN
 
-from core.config import SECRET_TOKEN
+from ..core.config import SECRET_TOKEN
 
 api_token_header = APIKeyHeader(name="Authorization", auto_error=False)
 
