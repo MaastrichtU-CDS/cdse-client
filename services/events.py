@@ -11,7 +11,7 @@ def create_start_app_handler(app: FastAPI) -> Callable:  # type: ignore
         PredictionModelStore().get_model_instance().initial_start_event()
 
         def signal_ready():
-            Client().post_ready()
+            Client().get_ready()
 
         t1 = threading.Thread(target=signal_ready, args=[])
         t1.start()

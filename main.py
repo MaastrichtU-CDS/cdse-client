@@ -6,7 +6,7 @@ from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from api.http_errors import http_error_handler
+from core.http_errors import http_error_handler
 
 from api.routes import router as api_router
 from core.config import ALLOWED_HOSTS, DEBUG, PROJECT_NAME, PORT, STATIC_DIR
