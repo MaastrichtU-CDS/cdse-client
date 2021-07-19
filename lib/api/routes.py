@@ -23,6 +23,7 @@ if os.path.isdir(TEMPLATE_DIR):
                 "request": request,
                 "custom": PredictionModelStore()
                 .get_model_instance()
-                .static_template_result(PredictionModelStore().get_model_instance()),
+                .static_template_result(PredictionModelStore()
+                .get_model_instance()),
             },
         )

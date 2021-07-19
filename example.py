@@ -17,7 +17,6 @@ class MyExampleModel(PredictionModelBase):
         pass
 
     def static_template_result(self):
-        print(self)
         pass
 
 
