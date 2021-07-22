@@ -10,7 +10,7 @@ In your repo run:
 - git submodule add https://<you-username-here>@bitbucket.org/maastro/cdse-client.git client
 
 This will create a new folder called "client" in you project.
-Copy the client/example.dockerfile and client/example.pipfile to your root and remove the "example" prefix.
+Copy the client/example.Dockerfile and client/pipfile to your root and remove the "example" prefix.
 Also create a new file (for example called main.py) in the root of your project and connect your prediction model like 
 demonstrated in client/example.py.
 

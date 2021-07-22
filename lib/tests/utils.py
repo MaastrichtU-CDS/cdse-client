@@ -1,11 +1,11 @@
 from typing import Dict
 
-from ..core.model_base import PredictionModelBase
+from ..core import PredictionModelBase
 
 HEADERS = {"Authorization": "secret"}
 PAYLOAD = {
-    "clinical_T": "cT1",
-    "clinical_N": "cN0",
+    "Clinical_T": "cT1",
+    "Clinical_N": "cN0",
 }
 
 
@@ -14,7 +14,7 @@ class TestModel(PredictionModelBase):
         raise NotImplementedError
 
     def static_template_result(self):
-        raise NotImplementedError
+        pass
 
     def initial_start_event(self):
         raise NotImplementedError

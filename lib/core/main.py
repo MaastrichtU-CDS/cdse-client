@@ -6,12 +6,12 @@ from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from .core.http_errors import http_error_handler
+from .http_errors import http_error_handler
 
-from .api.routes import router as api_router
-from .core.config import ALLOWED_HOSTS, DEBUG, PROJECT_NAME, PORT, STATIC_DIR
-from .services.events import create_start_app_handler
-from .core.model_factory import PredictionModelStore
+from ..api.routes import router as api_router
+from ..services.events import create_start_app_handler
+from .config import ALLOWED_HOSTS, DEBUG, PROJECT_NAME, PORT, STATIC_DIR
+from .model_factory import PredictionModelStore
 
 
 def get_application(prediction_model, optional_extra_routes) -> FastAPI:
