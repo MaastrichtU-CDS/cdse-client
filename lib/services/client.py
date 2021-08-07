@@ -15,7 +15,7 @@ class Client:
     def get_ready(self):
         try:
             session = requests.session()
-            session.headers = ("Authorization", SECRET_TOKEN)
+            session.headers.update({"Authorization": SECRET_TOKEN.__str__()})
             retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
             session.mount(self.PREFIX, HTTPAdapter(max_retries=retry))
             data = session.get(INVOCATION_HOST + self.READY_URL)
