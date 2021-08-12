@@ -6,7 +6,7 @@ router = APIRouter()
 
 
 class MyExampleModel(PredictionModelBase):
-    result = []
+    result = {"x": "y"}
 
     def initial_start_event(self):
         print("run before server started, so you can do pre calculations")
@@ -17,7 +17,7 @@ class MyExampleModel(PredictionModelBase):
         pass
 
     def static_template_result(self):
-        pass
+        return self
 
 
 @router.get("/_query")
