@@ -1,6 +1,4 @@
-import secrets
-
-from fastapi import HTTPException, Security
+from fastapi import HTTPException
 from fastapi.security import APIKeyHeader
 from starlette.status import HTTP_403_FORBIDDEN
 
