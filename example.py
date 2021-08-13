@@ -26,5 +26,6 @@ async def example_extra_route(session_token):
     print("example route")
     return "ok"
 
+
 if __name__ == "__main__":
     run(MyExampleModel, router)
