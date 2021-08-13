@@ -1,4 +1,4 @@
-from lib import run, PredictionModelBase
+from lib import run, PredictionModelBase, check_session_token
 from typing import Dict, Union
 from fastapi import APIRouter
 
@@ -21,9 +21,10 @@ class MyExampleModel(PredictionModelBase):
 
 
 @router.get("/_query")
-def example_extra_route():
+async def example_extra_route(session_token):
+    await check_session_token(session_token)
     print("example route")
-
+    return "ok"
 
 if __name__ == "__main__":
     run(MyExampleModel, router)
