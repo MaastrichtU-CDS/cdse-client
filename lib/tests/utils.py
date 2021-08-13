@@ -9,11 +9,14 @@ PAYLOAD = {
 
 
 class TestModel(PredictionModelBase):
-    def run_calculation(self, model_input: Dict[str, str]):
+    @staticmethod
+    def run_calculation(model_input: Dict[str, str]):
         pass
 
-    def static_template_result(self):
-        return self
+    @staticmethod
+    def static_template_result():
+        pass
 
-    def initial_start_event(self):
+    @staticmethod
+    def initial_start_event():
         pass
