@@ -11,6 +11,7 @@ class Client:
     PREFIX = "http://"
     READY_URL = "/ready"
     RESULT_URL = "/result"
+    ERROR_URL = "/error"
 
     def get_ready(self):
         try:
@@ -33,6 +34,20 @@ class Client:
             retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
             session.mount(self.PREFIX, HTTPAdapter(max_retries=retry))
             session.post(INVOCATION_HOST + self.RESULT_URL, data=json.dumps(results))
+            session.close()
+        except ConnectionError as connection_error:
+            print(connection_error)
+
+    def post_error(self, error_msg):
+        try:
+            session = requests.session()
+            session.headers.update({"Authorization": SECRET_TOKEN.__str__()})
+            retry = Retry(total=5, backoff_factor=0.2, status_forcelist=[500])
+            session.mount(self.PREFIX, HTTPAdapter(max_retries=retry))
+            session.post(
+                INVOCATION_HOST + self.ERROR_URL,
+                data=json.dumps({"error_message": error_msg}),
+            )
             session.close()
         except ConnectionError as connection_error:
             print(connection_error)
